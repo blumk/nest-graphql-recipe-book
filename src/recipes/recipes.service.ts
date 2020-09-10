@@ -3,6 +3,13 @@ import { NewRecipeInput } from './dto/new-recipe.input';
 import { RecipesArgs } from './dto/recipes.args';
 import { Recipe } from './models/recipe.model';
 
+export const yummyCake: Recipe = {
+  id: '1',
+  title: 'yummy cake',
+  creationDate: null,
+  ingredients: [],
+};
+
 @Injectable()
 export class RecipesService {
   async create(data: NewRecipeInput): Promise<Recipe> {
@@ -10,17 +17,15 @@ export class RecipesService {
   }
 
   async findOneById(id: string): Promise<Recipe> {
-    const sample: Recipe = {
-      id,
-      title: 'yummy cake',
-      creationDate: null,
-      ingredients: [],
-    };
-    return sample;
+    if (id === yummyCake.id) {
+      return yummyCake;
+    }
+
+    return null;
   }
 
   async findAll(recipesArgs: RecipesArgs): Promise<Recipe[]> {
-    return [] as Recipe[];
+    return [yummyCake];
   }
 
   async remove(id: string): Promise<boolean> {
